@@ -2,11 +2,11 @@
 
 %%% Load data
 clear all
-load('~/Desktop/blah/save_dr/learnedtraj_sim08-Feb-2022_000-111_1_comb4000.mat')
+load('~/Desktop/data_dr/111/singlecell_0_sim08-Feb-2022_000-111_1_comb4000_clusterloop_09-Feb-2022_learnedX.mat')
 
 %%% Indicate species and trajectories to plot
-species_ind=2;
-traj_inds=1:100;
+species_ind=1;
+traj_inds=1:10;
 
 %%% Set line width and line style
 lw=3; lwbg=2;
@@ -22,7 +22,6 @@ CspeciesA=[0.7608 0.2784 1.0000];
 CspeciesB=[0 1 1];
 CspeciesC=[1 0 0];
 CspeciesX=[0.85 0.3275 0.1];
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
