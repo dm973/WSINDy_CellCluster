@@ -18,4 +18,4 @@ module load matlab/R2019b
 
 cp /projects/dame8201/WSINDy_CellCluster/*.m $SLURM_SCRATCH/
 
-matlab -nodesktop -nodisplay -r "data_dr='${data_dr}'; input_data='${input_data}'; load([data_dr,input_data],'Xscell','Vscell','t'); run parprecomp.m;"
+matlab -nodesktop -nodisplay -r "data_dr='${data_dr}'; input_data='${input_data}'; load([data_dr,input_data],'Xscell','Vscell','t'); run ${SLURM_SCRATCH}/parprecomp.m;"
