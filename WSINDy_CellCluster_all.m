@@ -2,7 +2,7 @@
 
 data_dr = '~/Desktop/data_dr/111/';
 
-save_dr = 'save_dr/';
+save_dr = '~/Desktop/save_dr/';
 
 input_data='sim08-Feb-2022_000-111_1_comb4000.mat';
 load([data_dr,input_data],'Xscell','Vscell','t')
