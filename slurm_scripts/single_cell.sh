@@ -8,7 +8,7 @@
 #SBATCH --mail-user=dame8201@colorado.edu
 #SBATCH --mail-type=BEGIN,END,FAIL                                                                   
 #SBATCH --qos=preemptable                                                                            
-#SBATCH --array=1-100   ## set to number of homing cells
+#SBATCH --array=1-1000   ## set to number of homing cells
 
 ml purge
 module load matlab/R2019b

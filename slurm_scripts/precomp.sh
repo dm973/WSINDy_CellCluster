@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --time=00:15:00
-#SBATCH --output=/projects/dame8201/datasets/111_test/wsindy_cellcluster_%A_%a.log
+#SBATCH --output=/projects/dame8201/datasets/111_test/precomp_%A_%a.log
 #SBATCH --mail-user=dame8201@colorado.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --qos=preemptable
