@@ -2,10 +2,10 @@
 
 %%% Load data
 clear all
-load('~/Desktop/data_dr/101/learnedtraj_sim03-Feb-2022_000_101_toc57646.mat')
+load('~/Desktop/data_dr/111/learnedtraj_sim08-Feb-2022_000-111_1_comb4000.mat')
 
 %%% Indicate species and trajectories to plot
-species_ind=2;
+species_ind=1;
 traj_inds=1:10;
 
 %%% Set line width and line style
