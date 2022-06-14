@@ -11,7 +11,7 @@ vel_min_n = 0;
 w_neighb_frac = inf;
 
 %%% homing cell samping
-rand_subsample = 24; %%% set to inf to use all cells, otherwise a random subset is chosen
+rand_subsample = 200; %%% set to inf to use all cells, otherwise a random subset is chosen
 cutoff_n = 0.999;
 w_home_frac = inf;
 interact_rad_frac = inf;

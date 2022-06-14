@@ -2,7 +2,7 @@
 
 %%% Load data
 clear all
-load('~/Desktop/data_dr/111/learnedtraj_sim08-Feb-2022_000-111_1_comb4000.mat')
+load('~/Desktop/save_dr/learnedtraj_sim08-Feb-2022_000-111_1_comb4000.mat')
 
 %%% Indicate species and trajectories to plot
 species_ind=1;
