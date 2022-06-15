@@ -21,4 +21,4 @@ module load matlab/R2019b
 cp ${data_dr}*.mat $SLURM_SCRATCH/
 cp /projects/dame8201/WSINDy_CellCluster/*.m $SLURM_SCRATCH/
 
-matlab -nodesktop -nodisplay -r "data_dr='${data_dr}'; input_data='${input_data}'; load(['${SLURM_SCRATCH}/','singlecell_',input_data]); load(['${SLURM_SCRATCH}/','classify_',input_data]); run pargentraj.m;"
+matlab -nodesktop -nodisplay -r "data_dr='${data_dr}'; input_data='${input_data}'; load(['${SLURM_SCRATCH}/','singlecell_',input_data]); load(['${SLURM_SCRATCH}/','classify_',input_data]); run ${SLURM_SCRATCH}/pargentraj.m;"
