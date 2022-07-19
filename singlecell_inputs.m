@@ -11,7 +11,7 @@ vel_min_n = 0;
 w_neighb_frac = inf;
 
 %%% homing cell samping
-rand_subsample = 200; %%% set to inf to use all cells, otherwise a random subset is chosen
+rand_subsample = inf; %%% set to inf to use all cells, otherwise a random subset is chosen
 cutoff_n = 0.999;
 w_home_frac = inf;
 interact_rad_frac = inf;
@@ -77,7 +77,7 @@ subdt = 32;
 nufac_x = 0;
 nufac_v = 0;
 avg_v0 = 1;
-knnp1 = 8;
+knnp1 = 21;
 numbins = 50;
 nearestKLLneighbs=200;
 alphaKL=[1 1 1];

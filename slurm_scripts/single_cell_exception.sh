@@ -7,8 +7,11 @@
 #SBATCH --output=/projects/dame8201/datasets/111_test/single-cell-models/home_cell_%A-%a.log
 #SBATCH --mail-user=dame8201@colorado.edu
 #SBATCH --mail-type=BEGIN,END,FAIL                                                                   
-#SBATCH --qos=preemptable                                                                            
-#SBATCH --array=1-1000   ## set to number of homing cells
+
+#SBATCH --partition=blanca-bortz                              
+#SBATCH --qos=blanca-bortz  
+
+#SBATCH --array=2-102   ## set to number of homing cells
 
 ml purge
 ml matlab/R2019b
@@ -20,6 +23,9 @@ save_dr=${data_dr}single-cell-models/
 
 cp /projects/dame8201/WSINDy_CellCluster/*.m $SLURM_SCRATCH/
 cp $data_dr$precomp_data $SLURM_SCRATCH/
+cp ${data_dr}single-cell-models/missing_files.txt $SLURM_SCRATCH/
 
-matlab -nodesktop -nodisplay -r "i1=${SLURM_ARRAY_TASK_ID}; load('${SLURM_SCRATCH}/${precomp_data}'); run $SLURM_SCRATCH/parsingle_cell.m; save(['${save_dr}','home_cell_',num2st\
+ii=$(sed -n "${SLURM_ARRAY_TASK_ID}p" $SLURM_SCRATCH/missing_files.txt)
+
+matlab -nodesktop -nodisplay -r "i1=${ii}; load('${SLURM_SCRATCH}/${precomp_data}'); run $SLURM_SCRATCH/parsingle_cell.m; save(['${save_dr}','home_cell_',num2st\
 r(i1),'.mat'],'algouttemp','Xspred','errs','valid_cells','nu_learned')"
