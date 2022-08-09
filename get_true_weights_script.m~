@@ -1,0 +1,48 @@
+exper = '111';
+data_dr = ['~/Desktop/data_dr/',exper,'/'];
+save_dr=data_dr;
+input_data='sim08-Feb-2022_000-111_1_comb4000.mat';
+consol_data = [save_dr,'singlecell_',input_data];
+
+load(consol_data,'fx_fcn_cell','fv_fcn_cell','hx_fcn_cell','hv_fcn_cell','dx_fcn_cell','dv_fcn_cell','J_fx','J_fv','J_hx','J_hv','J_dx','J_dv');
+
+%% 
+
+f_ar_true = @(r,t) (15+10*cos(2*t)).*(exp(-20*r) - 0.25*exp(-10*r));
+f_align_true = @(r,t) -(8+8*cos(t)).*exp(-8*r);
+f_drag_true = @(s,t) -5*s;
+
+tpoints = 10^5;
+r = 2;
+v = [0 1];
+lambda = 10^-8;
+
+W_ar = get_true_weights(f_ar_true,tpoints,r,v,fx_fcn_cell,fv_fcn_cell,lambda);
+W_align = get_true_weights(f_align_true,tpoints,r,v,hx_fcn_cell,hv_fcn_cell,lambda);
+W_drag = get_true_weights(f_drag_true,tpoints,r,v,dx_fcn_cell,dv_fcn_cell,lambda);
+
+W_true = [W_ar;W_align;W_drag];
+
+P=[];
+for j=1:J_fv
+    P = [P j:J_fv:J_fx*J_fv];
+end
+for j=1:J_hv
+    P = [P J_fx*J_fv+(j:J_hv:J_hx*J_hv)];
+end
+for j=1:J_dv
+    P = [P J_fx*J_fv+J_hx*J_hv+(j:J_dv:J_dx*J_dv)];
+end
+
+function W = get_true_weights(ftrue,tpoints,r,v,fx_cell,fv_cell,lambda)
+    n = floor(sqrt(tpoints));
+    [rr,th,~,~] = build_polar_grid(n,r,v);
+    A = [];
+    for i=1:length(fx_cell)
+        for j=1:length(fv_cell)
+            A = [A reshape(fx_cell{i}(rr).*fv_cell{j}(th),[],1)];
+        end
+    end
+    b = reshape(ftrue(rr,th),[],1);
+    W = sparsifyDynamics(A,b,lambda,0,ones(size(A,2),1),size(A,2));
+end

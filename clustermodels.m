@@ -1,30 +1,3 @@
-% clear all
-% 
-% dr='~/Desktop/data/wound_healing/single-cell/';
-% fl='singlecell_artificial_1-21-22_N1000';
-% singlecellfile=[dr,fl,'.mat'];
-% topmodval=[dr,fl,'_topmodelval.mat'];
-% 
-% load(topmodval,'valid_cells','relerr');
-% load(singlecellfile,'ninds','algout','simdat');
-% 
-% errtol=0.1;
-% outliertol=0.01;
-% inds=valid_cells(relerr>errtol);
-% topcluster = find(~ismember(ninds,valid_cells));find(ismember(ninds,valid_cells(relerr<=errtol)))];
-% alpha=1/sqrt(3);beta=1/sqrt(3);gamma=1/sqrt(3);pp=0;tol=0.5;
-% 
-% if length(inds)<outliertol*length(relerr)
-%     disp(['unimodal'])
-% else
-%     disp(['multimodal'])
-%     subinds=find(ismember(ninds,inds));
-%     [Mod,inds_pat]=clustermodels(singlecellfile,alpha,beta,gamma,pp,tol,subinds);
-%     if sum(cellfun(@(x)length(x{1}),inds_pat))<outliertol*length(relerr)
-%         disp(['second mode unclassifiable'])
-%     end
-% end
-
 function [Wsmat,Mod,inds_keep,ge_score,models,inds_pat,ninds_rep]=clustermodels(alpha,beta,gamma,normGE,normALL,tol1,tol2,ninds,simdat,neighbs,algout,J_fv,J_fx,J_hv,J_hx,J_dv,J_dx,ge)
 
     Mod=model_exchanges(ninds,neighbs,ge,algout,alpha,beta,gamma,normGE,normALL,tol1,tol2);

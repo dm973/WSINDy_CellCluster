@@ -40,7 +40,7 @@ function [t,Z,B] = simnu_split(RHS,t,Ztemp,m,nux,nuv,verbose,X,V)
     Z(1,:) = Ztemp;
     
     tq=linspace(t(1),t(2),m+1);
-    for mm=1:M-1
+    for mm=2:M-1
         ttemp=linspace(t(mm),t(mm+1),m+1);
         tq=[tq,ttemp(2:end)];
     end

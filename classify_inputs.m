@@ -20,10 +20,10 @@ tol2=0.25; % accept neighbor model if neighbors p-score at most tol2,
 %%% define error function 
 
 tcap=1;
-%     errfun = @(X,Y,V,W) norm(reshape(X(:,:,1:floor(tcap*end))-Y(:,:,1:floor(tcap*end)),[],1))/...
-%         norm(reshape(Y(:,:,1:floor(tcap*end))-Y(:,:,1),[],1));
 errfun = @(X,Y,V,W) norm(reshape(V(:,:,1:floor(tcap*end))-W(:,:,1:floor(tcap*end)),[],1))/...
     norm(reshape(W(:,:,1:floor(tcap*end)),[],1));
+%     errfun = @(X,Y,V,W) norm(reshape(X(:,:,1:floor(tcap*end))-Y(:,:,1:floor(tcap*end)),[],1))/...
+%         norm(reshape(Y(:,:,1:floor(tcap*end))-Y(:,:,1),[],1));
 %     errfun = @(X,Y,V,W) sum(vecnorm(X(:,:,1:floor(tcap*end))-Y(:,:,1:floor(tcap*end)),2,2)>0.025)/size(Y(:,:,1:floor(tcap*end)),3);
 
 %%% define validation simulation parameters 
@@ -40,7 +40,7 @@ verbose =0;
 
 %%% define halting criteria
 
-num_gm_tries=20;
+num_gm_tries = 20;
 max_species = 10;
 accept_err = 0.05;
 halt_prob = 0.01;

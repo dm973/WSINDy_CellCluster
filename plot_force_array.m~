@@ -1,0 +1,51 @@
+force_ind = 1;
+dims = [5 3];
+
+exper = '111';
+data_dr = ['~/Desktop/data_dr/',exper,'/'];
+save_dr=data_dr;
+
+input_data='sim08-Feb-2022_000-111_1_comb4000.mat';
+consol_data = [save_dr,'singlecell_',input_data];
+load(consol_data,'algout')
+
+n = 100;
+r =0.1;
+v =[0 1];
+cap = inf;
+levs = 200;
+[rr,th,xx,yy] = build_polar_grid(n,r,v);
+x = xx(1,:);
+y = yy(:,1);
+
+inds = [];
+for spec_ind=0:2
+    inds = [inds;333*spec_ind+randperm(333,dims(1))];
+end
+inds=inds(:);
+
+for i=1:length(inds)
+    f_learned = algout{inds(i)}{force_ind};
+    try 
+        F = f_learned(rr,th);
+    catch
+        F = [];
+    end
+    
+    foo=subplot(dims(1),dims(2),i);
+    if ~isempty(F)
+        F = min(max(F,-cap),cap);
+    else
+        F = 0*xx;
+%         contourf(xx,yy,F,levs,'edgecolor','none')
+        surf(xx,yy,F,'edgeColor','none')
+        view([0 90])
+        xlabel('x')
+        ylabel('y')
+        ylim([min(y) max(y)])
+        xlim([min(x) max(x)])
+        colorbar
+        colormap(jet(100))
+        axis equal
+    end
+end

@@ -17,7 +17,7 @@ resid = (bs-Gs*W)/norm(bs);
 nu_learned = rms(Gs*W-bs)^2/2;
 
 %%% Compute neighbors of homing cell
-valid_cells = get_neighbs(X, ind_cell, home_cell, V, expr, nearestKLLneighbs, alphaKL, knnp1, tobs, numbins);
+valid_cells = get_neighbs(X, V, ind_cell, ninds, nearestKLLneighbs, alphaKL, knnp1, tobs, numbins);
 
 %%% Validate model on neighbor cells
 [Xspred,errs] = test_neighbs(X,V,tobs,nu_learned,nufac_x,nufac_v,f_learned,h_learned,d_learned,valid_cells,opts,subdt,avg_v0,test_tinds_frac,verbose,1);

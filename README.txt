@@ -1,4 +1,4 @@
-The included files reproduce the results in "Learning Anisotropic Interaction Rules from Individual Trajectories in a Heterogeneous Cellular Population", DA Messenger, GE Wheeler, X. Liu, DM Bortz, arXiv:2204.14141, 2022. Example datasets can be found at https://doi.org/10.5281/zenodo.6637041
+The included files reproduce the results in "Learning Anisotropic Interaction Rules from Individual Trajectories in a Heterogeneous Cellular Population", DA Messenger, GE Wheeler, X. Liu, DM Bortz, arXiv:2204.14141, 2022. Example datasets can be found at https://doi.org/10.5281/zenodo.6968448
 
 Users have the option of running the first portion of the algorithm remotely in a trivially parallel manner, or use parfor loops on a local machine. 
 

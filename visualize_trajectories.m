@@ -2,11 +2,16 @@
 
 %%% Load data
 clear all
-load('~/Desktop/save_dr/learnedtraj_sim08-Feb-2022_000-111_1_comb4000.mat')
 
-%%% Indicate species and trajectories to plot
-species_ind=1;
-traj_inds=1:10;
+exper = '111';
+data_dr = ['~/Desktop/data_dr/',exper,'/'];
+save_dr = data_dr;
+load([save_dr,findfile(save_dr,'learnedtraj_',[])]);
+
+%% Indicate species and trajectories to plot
+
+species_ind=5;
+traj_inds=1:5;
 
 %%% Set line width and line style
 lw=3; lwbg=2;

@@ -19,10 +19,11 @@ tobs_test=tobs(test_tinds);
 species_inds={};
 species_models={};
 valpairs_cell={};
+species_indsInModels={};
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% learn models
 
-subinds=1:length(ninds);
+subinds = 1:length(ninds);
 
 while ~isempty(subinds)
 
@@ -33,6 +34,9 @@ while ~isempty(subinds)
 
     %%% compute top model
     if ~isempty(inds_pat)
+
+        species_indsInModels = [species_indsInModels,{{Wsmat(:,inds_pat{1}{1}),inds_pat{1}{1},Mod,ninds_rep}}];
+
         W=mean(Wsmat(:,inds_pat{1}{1}),2);
         %%% could use median here
         W(log10(abs(W))<max(log10(abs(W)))-logcutoff)=0;

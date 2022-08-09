@@ -3,6 +3,10 @@ function [Xspred,errs,nux,nuv] = test_neighbs(X,V,tobs,nu_learned,nufac_x,nufac_
 nux = nu_learned*nufac_x;
 nuv = nu_learned*nufac_v;
 
+tcap=1;
+errfun = @(X,Y,V,W) norm(reshape(V(:,:,1:floor(tcap*end))-W(:,:,1:floor(tcap*end)),[],1))/...
+    norm(reshape(W(:,:,1:floor(tcap*end)),[],1));
+
 if ~isempty(f_learned)
     f_xv_pred = @(x,v,t) f_learned(x,v);
 else
@@ -50,10 +54,10 @@ if toggle_par
             V_pred(:,:,m) = reshape(Z(m,end/2+1:end)',1,d);
         end
         Xspred{jj}={X_pred,V_pred};
-        errs(jj)=norm(reshape(X_pred-X(valid_cells(jj),:,:),[],1))/...
-                norm(reshape(X(valid_cells(jj),:,:)-X(valid_cells(jj),:,1),[],1));
+        errs(jj) = errfun(X_pred,X(inds_n,:,:),V_pred,V(inds_n,:,:));
+
         if verbose>1
-            disp([toc jj])
+            disp([toc inds_n jj errs(jj)]);
         end
     end
 
@@ -79,10 +83,12 @@ else
             V_pred(:,:,m) = reshape(Z(m,end/2+1:end)',1,d);
         end
         Xspred{jj}={X_pred,V_pred};
-        errs(jj)=norm(reshape(X_pred-X(valid_cells(jj),:,:),[],1))/...
-                norm(reshape(X(valid_cells(jj),:,:)-X(valid_cells(jj),:,1),[],1));
+        errs(jj) = errfun(X_pred,X(inds_n,:,:),V_pred,V(inds_n,:,:));
+
         if verbose>1
-            disp([toc jj])
+            disp([toc inds_n jj errs(jj)]);
+            plot(squeeze(X(inds_n,1,:)),squeeze(X(inds_n,2,:)),'k',squeeze(X_pred(1,1,:)),squeeze(X_pred(1,2,:)),'r--','linewidth',2)
+            drawnow
         end
     end
 
@@ -92,4 +98,5 @@ if verbose
     disp(['Errors on neighbor cells: '])
     disp(errs(:)');
 end
+
 end
