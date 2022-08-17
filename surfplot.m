@@ -1,5 +1,5 @@
 surf(xx,yy,F_dat,'edgeColor','none')
-colorbar
+colorbar;
 view([0 90])
 if force_ind<3
     xlabel('$x$','interpreter','latex')
