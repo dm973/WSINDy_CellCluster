@@ -9,5 +9,5 @@ function h  = crossparticle_dist(X,Y,e)
         difft=squeeze(vecnorm(permute(Xt,[1 3 2])-permute(Yt,[3 1 2]),2,3));
         Xrad=[Xrad;reshape(difft(logmat),[],1)];
     end
-    h = histcounts(Xrad,e,'normalization','pdf');
+    h = histcounts(Xrad(Xrad>0),e,'normalization','pdf');
 end

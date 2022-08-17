@@ -1,7 +1,7 @@
 %% choose experiment and load variables
 clear all; clc
 
-exper = '100';
+exper = '111';
 
 data_dr = ['~/Desktop/data_dr/',exper,'/'];
 save_dr = data_dr;
@@ -14,8 +14,6 @@ tcap=1; test_tinds_frac= 0.25;
 errfun = @(X,Y,V,W) norm(reshape(V(:,:,1:floor(tcap*end))-W(:,:,1:floor(tcap*end)),[],1))/...
     norm(reshape(W(:,:,1:floor(tcap*end)),[],1));
 test_tinds = 1:floor(length(tobs)*test_tinds_frac);
-
-2*max(reshape(vecnorm(Vscell_obs{1},2,2),[],1))
 
 % choose cluster and force to view
 
@@ -33,7 +31,7 @@ for cluster_num = 1:length(find(cellfun(@(x) ~isempty(x), species_models)))
             v =[0 1];
             [rr,th,xx,yy] = build_polar_grid(n,r,v);
         else
-            r = 0.2;
+            r = max(reshape(vecnorm(Vscell_obs{1},2,2),[],1));
             [rr,th] = meshgrid(linspace(0,r,n),linspace(0,pi,n));
             xx=rr;
             yy=th;
@@ -73,9 +71,9 @@ for cluster_num = 1:length(find(cellfun(@(x) ~isempty(x), species_models)))
     end
 
         
-    CS_A = length(intersect(species_inds{cluster_num},inds_cell_true{1}))/length(inds_cell_true{1});
-    CS_B = length(intersect(species_inds{cluster_num},inds_cell_true{2}))/length(inds_cell_true{2});
-    CS_C = length(intersect(species_inds{cluster_num},inds_cell_true{3}))/length(inds_cell_true{3});
+    CS_A = length(intersect(species_inds{cluster_num},inds_cell_true{1}))/length(intersect(inds_cell_true{1},ninds));
+    CS_B = length(intersect(species_inds{cluster_num},inds_cell_true{2}))/length(intersect(inds_cell_true{2},ninds));
+    CS_C = length(intersect(species_inds{cluster_num},inds_cell_true{3}))/length(intersect(inds_cell_true{3},ninds));
 
     disp(['CS(A) CS(B) CS(C) = ',num2str([CS_A CS_B CS_C])])
 

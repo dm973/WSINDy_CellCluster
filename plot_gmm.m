@@ -55,4 +55,8 @@ if spec<=length(species_inds)
     
     xlim([min(egm) max(egm)])
 
+    if toggle_save
+        saveas(gcf,['~/Desktop/gm_',exper,'_',num2str(spec),'.png'])
+    end
+
 end

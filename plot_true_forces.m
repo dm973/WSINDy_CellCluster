@@ -14,20 +14,28 @@ v =[0 1];
 x = xx(1,:);
 y = yy(:,1);
 
+c_range = [-15 15]; 
+
 figure(1);
-c_range = [-15 15]; force_ind=1;
-F_dat = f_xv_true_cell{1}(rr,th,0); surfplot;
+force_ind=1;
+F_dat = f_xv_true_cell{1}(rr,th,0); surfplot; 
+% colorbar off
+% set(gca,'XTick',[],'Ytick',[],'xlabel',[],'ylabel',[])
 legend({'$f^\star_{a-r}$'},'interpreter','latex','fontsize',12)
 saveas(gcf,'~/Desktop/ftrue.png')
 
 figure(2); 
 force_ind=2;
 F_dat = h_xv_true_cell{1}(rr,th,0); surfplot;
+% colorbar off
+% set(gca,'XTick',[],'Ytick',[],'xlabel',[],'ylabel',[])
 legend({'$f^\star_{align}$'},'interpreter','latex','fontsize',12)
 saveas(gcf,'~/Desktop/htrue.png')
 
+c_range = [-inf inf];
+
 figure(3); 
-c_range = [-inf inf]; force_ind=3;
+force_ind=3;
 r = 0.2;
 [rr,th] = meshgrid(linspace(0,r,n),linspace(0,pi,n));
 xx=rr;
@@ -35,6 +43,8 @@ yy=th;
 x = xx(1,:);
 y = yy(:,1);
 F_dat = d_xv_true_cell{1}(rr,th,0); surfplot;
+% colorbar off
+% set(gca,'XTick',[],'Ytick',[],'xlabel',[],'ylabel',[])
 legend({'$f^\star_{drag}$'},'interpreter','latex','fontsize',12)
 saveas(gcf,'~/Desktop/dtrue.png')
 
