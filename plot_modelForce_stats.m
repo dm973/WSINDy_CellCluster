@@ -1,7 +1,7 @@
 %% choose experiment and load variables
 clear all
 
-exper = '100';
+exper = '101';
 
 data_dr = ['~/Desktop/data_dr/',exper,'/'];
 save_dr = data_dr;
@@ -13,7 +13,7 @@ ftrue_cell = {f_xv_true_cell,h_xv_true_cell,d_xv_true_cell};
 
 %% choose cluster and force to view
 
-cluster_num = 1;
+cluster_num = 2;
 force_ind = 2;
 
 inds = species_inds{cluster_num};
@@ -21,9 +21,9 @@ Mod = species_indsInModels{cluster_num}{3};
 
 %% set plotting arguments
 
-n = 200;
+n = 1000;
 if force_ind<3
-    r = 0.2;
+    r = 2;
     v =[0 1];
     [rr,th,xx,yy] = build_polar_grid(n,r,v);
 else
