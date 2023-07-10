@@ -33,6 +33,10 @@ errs=zeros(length(valid_cells),1);
 [N,d,~] = size(X);
 RHS = @(Z,t) rhs_lean_pred(f_xv_pred, h_xv_pred, d_xv_pred, Z, d, t, opts,1);
 
+if length(valid_cells) == 1
+    toggle_par = 0;
+end
+
 if toggle_par
 
     parfor jj=1:length(valid_cells)

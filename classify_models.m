@@ -48,7 +48,7 @@ while ~isempty(subinds)
         num_gen=length(valid_cells);
         
         %%% Validate model on remaining cells
-        [valpairs,~] = test_neighbs(Xtest,Vtest,tobs,nu_learned,nufac_x,nufac_v,f_learned,h_learned,d_learned,valid_cells,opts,subdt,avg_v0,test_tinds_frac,2,1);
+        [valpairs,~] = test_neighbs(Xtest,Vtest,tobs,nu_learned,nufac_x,nufac_v,f_learned,h_learned,d_learned,valid_cells,opts,subdt,avg_v0,test_tinds_frac,verbose,1);
 
         valpairs_cell=[valpairs_cell,{valpairs}];
         
