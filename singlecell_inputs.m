@@ -1,7 +1,7 @@
 %%% data sampling
 subruns = 1;
 expr = 1;
-subt = [0 10 1];
+subt = [0 20 1];
 
 %%% velocity method
 velmeth=[];
@@ -82,4 +82,4 @@ numbins = 50;
 nearestKLLneighbs=200;
 alphaKL=[1 1 1];
 opts = [1 0 0];
-verbose=1;
+verbose = 1;

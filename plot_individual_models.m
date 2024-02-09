@@ -6,10 +6,10 @@ exper = '111';
 force_ind = 1; % 1,2,3 = a-r,align,drag
 num_cells_per_species = 4;
 
-data_dr = ['~/Desktop/data_dr/',exper,'/'];
+data_dr = ['~/Desktop/JRSI_data/WSINDy_CellCluster_data/data_dr/',exper,'/'];
 save_dr=data_dr;
 input_data = findfilestrloc(save_dr,'sim',1);
-consol_data = [save_dr,'singlecell_',input_data];
+consol_data = [save_dr,'singlecell_0_',input_data];
 load(consol_data,'algout')
 load([data_dr,input_data],'inds_cell_true')
 species_inds_true=find(cellfun(@(x) ~isempty(x),inds_cell_true));

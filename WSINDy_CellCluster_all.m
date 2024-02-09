@@ -1,8 +1,8 @@
 %% select dataset
 
 clear all;
-data_dr = '~/Desktop/data_dr/110/';
-save_dr = data_dr;
+data_dr = '~/Desktop/JRSI_data/WSINDy_CellCluster_data/data_dr/110/';
+save_dr = '~/Desktop/';
 input_data = findfilestrloc(data_dr,'sim',1);
 
 %% Get single-cell models (local machine)
@@ -12,14 +12,19 @@ load([data_dr,input_data],'Xscell','Vscell','t')
 singlecell_inputs;
 precomp_learningenvironment;
 
-ninds = home_cell{expr};
+ninds = home_cell{expr}(randi(end));
 X = Xscell_obs{expr};
 V = Vscell_obs{expr};
 algout=cell(length(ninds),1);
 simdat=cell(length(ninds),1);
 neighbs=cell(length(ninds),1);
 
-parfor i1=1:length(ninds)
+if length(ninds)==1
+    numworkers = 0;
+else
+    numworkers = inf;
+end
+parfor(i1=1:length(ninds), numworkers)
 
     ind_cell = ninds(i1);
 

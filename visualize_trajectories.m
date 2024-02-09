@@ -4,9 +4,9 @@
 clear all
 
 exper = '111';
-data_dr = ['~/Desktop/data_dr/',exper,'/'];
+data_dr = ['~/Desktop/JRSI_data/WSINDy_CellCluster_data/data_dr/',exper,'/'];
 save_dr = data_dr;
-load([save_dr,findfile(save_dr,'learnedtraj_',[])]);
+load([save_dr,findfile(save_dr,'learnedX',[])]);
 
 %% Indicate species and trajectories to plot
 
